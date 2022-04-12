@@ -20,7 +20,7 @@
 ;;Provisions §2
 ;;--------------------------------------------------------------------
 
-;TODO: Review provisions
+;TODO: Review provisions and add contracts
 (provide (all-defined-out))
 
 ;;--------------------------------------------------------------------
