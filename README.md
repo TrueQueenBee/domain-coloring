@@ -1,4 +1,6 @@
-# Complex-Analysis
+## Domain Coloring for Complex Analysis in Racket
+
+### Setup
 
 To use, open DrRacket and run the complex-grapher-test.rkt file in the same folder as complex-grapher.rkt. This program requires you to install the colors package, which you can do from the command line with `raco pkg install colors`.
 
@@ -7,7 +9,9 @@ You can also run the complex equation grapher in the racket run-time system:
 - Navigate to the containing folder with `,cd <path>`
 - Run the command `,enter "complex-grapher-test.rkt"`
 
-From there, the following commands may be used to control the calculator:
+### Use
+
+The following commands may be used to control the calculator:
 
 ```
 (help) : show this dialogue
@@ -33,3 +37,12 @@ Right clicking the window will cause the calculator to zoom out to half the magn
 
 Additional explanation and details on implementation can be found in the comments in the source files.
 
+### Interpretation
+
+The default equation shown by `(reset)` is the identity function. This shows a one-to-one correspondance between inputs and outputs.\
+The position on the canvas serves as the input. Horizontal displacement correspond to the real axis with positive numbers to the right.\
+Vertical displacement corresponds to the imaginary axis with positive multiples of i to the bottom.
+
+The output for a given point is represented by the color at that point. The magnitude of the output corresponds to lightness: the darker, the closer to zero, and the lighter, the closer to infinity. The hue represents the angle of the output: red is positive real, cyan is negative real, indigo is positive imaginary, chartreuse is negative imaginary, etc.
+
+Zeroes in the output appear as completely black, whereas poles (a.k.a. 'infinite discontinuities') appear as completely white. The default window settings place the origin in the very center of the screen, with the horizontal and vertical window spans each being 4 units across.
