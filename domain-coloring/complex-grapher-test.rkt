@@ -17,7 +17,14 @@
 (require racket/gui/base)
 
 ;;--------------------------------------------------------------------
-;; Miscellaneous Procedures §2
+;;Provisions §2
+;;--------------------------------------------------------------------
+
+;TODO: Review provisions
+(provide (all-defined-out))
+
+;;--------------------------------------------------------------------
+;; Miscellaneous Procedures §3
 ;;--------------------------------------------------------------------
 
 ;A convenient alias
@@ -275,7 +282,7 @@
 (>> arg . procs) : pipeline arg through procs left to right")}}
 
 ;;--------------------------------------------------------------------
-;; Object Definitions §3
+;; Object Definitions §4
 ;;--------------------------------------------------------------------
 
 {define complex-frame (new complex-frame%
@@ -304,15 +311,19 @@
                            [interval 1000])}
 
 ;;--------------------------------------------------------------------
-;; Drawing Calls 4
+;; Drawing Calls 5
 ;;--------------------------------------------------------------------
 
-(send complex-dc set-pen (make-color 255 255 255) 0 'transparent)
-(send complex-dc set-font (make-font #:size 12 #:face "Courier"))
-(send complex-frame show #t)
+{define initialize 
+  {lambda ()
+    (send complex-dc set-pen (make-color 255 255 255) 0 'transparent)
+    (send complex-dc set-font (make-font #:size 12 #:face "Courier"))
+    (send complex-frame show #t)}}
+
+(initialize)
 
 ;;--------------------------------------------------------------------
-;; Extra Notes and Temporary Stuff 5
+;; Extra Notes and Temporary Stuff 6
 ;;--------------------------------------------------------------------
 
 #|
