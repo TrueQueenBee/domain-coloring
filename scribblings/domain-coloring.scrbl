@@ -12,6 +12,9 @@ This is done using the technique of @hyperlink["https://en.wikipedia.org/wiki/Do
 which works by assigning a color to each point on the complex plane to ease the representation and interpretation
 of four-dimensional functions.
 
+These docs are currently incomplete. See the @hyperlink["https://github.com/TrueQueenBee/domain-coloring" "github project"] for additional information
+while the docs are being written.
+
 @section{Control}
 
 @defproc[(reset)
