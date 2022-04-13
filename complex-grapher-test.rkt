@@ -175,9 +175,9 @@
 {define-syntax f:
   {syntax-rules (~)
     [(_ arg ...+ ~ . stuff)
-     (eval '{lambda (arg ...+) stuff})]
+     {lambda (arg ...+) stuff}]
     [(_ arg ~ . stuff)
-     (eval '{lambda (arg) stuff})]}}
+     {lambda (arg) stuff}]}}
 ;See the following examples:
 ;(f: x ~ sqr x) → #<procedure>
 ;((f: x ~ sqr x) 5) → 25
