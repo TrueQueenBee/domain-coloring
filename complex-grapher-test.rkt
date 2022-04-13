@@ -108,15 +108,15 @@
 ;  coefficients: (listof complex?)
 {define polynomial
   {lambda coefficients
-    (eval (list 'lambda '(x)
-                (cons '+ (filter identity (map {lambda (c d) {cond [(zero? c) #f]
-                                                                   [(zero? d) c]
-                                                                   [{and (= 1 d) (= 1 c)} `x]
-                                                                   [(= 1 d) `(* ,c x)]
-                                                                   [(= 1 c) `(expt x ,d)]
-                                                                   [else `(* ,c (expt x ,d))]}}
-                                               coefficients
-                                               (range (sub1 (length coefficients)) -1 -1))))))}}
+      (apply combine (cons + (map {lambda (c d)
+                                    {cond [(zero? c) {lambda (x) 0}]
+                                          [(zero? d) {lambda (x) c}]
+                                          [{and (= 1 d) (= 1 c)} identity]
+                                          [(= 1 d) {lambda (x) (* c x)}]
+                                          [(= 1 c) {lambda (x) (expt x d)}]
+                                          [else {lambda (x) (* c (expt x d))}]}}
+                                  coefficients
+                                  (range (sub1 (length coefficients)) -1 -1))))}}
 
 ;Creates a procedure that calculates the derivative of the polynomial function
 ;  with the arguments used as coefficients
