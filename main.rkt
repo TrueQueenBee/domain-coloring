@@ -30,6 +30,7 @@
          graph
          set-res
          show
+         hide
          reset
          near-multiple?
          counter
