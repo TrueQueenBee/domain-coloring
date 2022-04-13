@@ -53,7 +53,7 @@
       (apply * (map {lambda (zr) (- x zr)} zrs))}}}
 
 ;Defines a function with the specified number of zeroes and poles,
-;  where item is a quoted expression which resolves to a complex number upon evaluation
+;  where item is a procedure that accepts any number of arguments and always returns a complex number
 ;  Bands can be marked with the #:bands and #:alt-bands keyword arguments:
 ;    data1 and data2 are pairs of nonnegative integers, in which
 ;      the car of the pair is the number of bands to draw around a zero or pole, and
@@ -62,14 +62,14 @@
 ;  → {-> complex? complex?}
 ;  zrs: nonnegative-integer?
 ;  poles: nonnegative-integer?
-;  item: (and/c (or/c symbol? list?) {lambda (x) (complex? (eval x))})
+;  item: {->* () #:rest any/c complex?}
 ;  data1: (or/c #f (cons/c nonnegative-integer? nonnegative-integer?))
 ;  data2: (or/c #f (cons/c nonnegative-integer? nonnegative-integer?))
 {define zero-pole
-  {lambda (zrs poles [item '(random-complex)] #:bands [data1 #f] #:alt-bands [data2 #f])
+  {lambda (zrs poles [item (thunk* (random-complex))] #:bands [data1 #f] #:alt-bands [data2 #f])
     {define func (combine /
-                          (apply zeroes (map eval (make-list zrs item)))
-                          (apply zeroes (map eval (make-list poles item))))}
+                          (apply zeroes (build-list zrs item))
+                          (apply zeroes (build-list poles item)))}
     {cond [(nor data1 data2) func]
           [(and data1 (not data2))
            {define freq1 (car data1)} {define tol1 (cdr data1)}
