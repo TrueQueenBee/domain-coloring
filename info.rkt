@@ -10,4 +10,4 @@
                
 (define build-deps '())
 
-(define pkg-authors ('TrueQueenBee))
+(define pkg-authors '(TrueQueenBee))
