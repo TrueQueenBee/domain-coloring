@@ -359,16 +359,15 @@
       {lambda (x y)
         
         ;Get the input, process it with equation, and apply the color-constant
-        {define complex-output (equation (scaled-number x y))}
+        {define output (equation (scaled-number x y))}
 
-        {if (zero? complex-output) black ;return black when mag is 0 to avoid errors when using log
-
+        {if (zero? output) black ;Prevent (angle 0) which is an error
+            
             ;Magnitude used as lightness (L)
             ;Amplitude used as hue (H)
-            ;Saturation is assumed to always be 1
-            ;Sigmoid to get lightness between 0 and 1
-            (hsl->color (hsl (mod-extended (/ (angle complex-output) (* 2 pi)) 1) 1
-                             (sigmoid (log (magnitude complex-output)))))}}}
+            ;Saturation is always 1
+            (hsl->color (hsl ({lambda (x) (- x (floor x))} (/ (angle output) (* 2 pi))) 1
+                             ({lambda (x) (/ x (add1 x))} (magnitude output))))}}}
 
     ;(on-event event) → void?
     ;  event: (is-a?/c mouse-event%)
