@@ -2,7 +2,10 @@
 
 ### Setup
 
-To use, open DrRacket and run the complex-grapher-test.rkt file in the same folder as complex-grapher.rkt. This program requires you to install the colors package, which you can do from the command line with `raco pkg install colors`.
+To use, enter the following command into the command line: `raco pkg install domain-coloring`. Once the package has been installed, you can access it either in DrRacket or in the racket run-time system by typing `(require domain-coloring)`
+
+If you would rather download the github files, you can do the following:
+Open DrRacket and run the complex-grapher-test.rkt file in the same folder as complex-grapher.rkt. This program requires you to install the colors package, which you can do from the command line with `raco pkg install colors`.
 
 You can also run the complex equation grapher in the racket run-time system:
 - See your current directory with `,pwd`
